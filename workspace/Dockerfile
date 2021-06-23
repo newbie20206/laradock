@@ -1173,7 +1173,7 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
 # Phalcon:
 ###########################################################################
 
-ARG INSTALL_PHALCON=false
+ARG INSTALL_PHALCON=true
 ARG LARADOCK_PHALCON_VERSION
 ENV LARADOCK_PHALCON_VERSION ${LARADOCK_PHALCON_VERSION}
 
