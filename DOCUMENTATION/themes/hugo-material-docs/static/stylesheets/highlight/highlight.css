@@ -2,7 +2,7 @@
  * overwrite the current primary color of the 
  * theme that is used as fallback in codeblocks 
  */
-.article pre code {
+.article code {
 	color: rgba(0, 0, 0, 0.78) !important;
 }
 

@@ -513,8 +513,12 @@ RUN if [ ${INSTALL_GEARMAN} = true ]; then \
 ARG INSTALL_PHPREDIS=false
 
 RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
-    apt-get update -yqq && \
-    apt-get install -yqq php-redis \
+    # apt-get update -yqq && \
+    # apt-get install -yqq php-redis \
+    
+    # 上面官方安装redis方式在workspace使用php -m会发现没有安装redis扩展，为了兼容swoft改为下面方式安装
+    pecl install redis \
+    && echo "extension=redis.so" >> /etc/php/${LARADOCK_PHP_VERSION}/cli/php.ini \
 ;fi
 
 ###########################################################################

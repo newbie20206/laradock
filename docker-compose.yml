@@ -161,6 +161,7 @@ services:
         - "${WORKSPACE_VUE_CLI_SERVE_HOST_PORT}:8080"
         - "${WORKSPACE_VUE_CLI_UI_HOST_PORT}:8000"
         - "${WORKSPACE_ANGULAR_CLI_SERVE_HOST_PORT}:4200"
+        - "18306:18306"
       tty: true
       environment:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
@@ -424,10 +425,14 @@ services:
 
 ### MySQL ################################################
     mysql:
-      build:
-        context: ./mysql
-        args:
-          - MYSQL_VERSION=${MYSQL_VERSION}
+      #mysql8.0因为没有官方arm64镜像需要做如下修改，5.7版本需注释互换
+      image: mysql
+      platform: linux/arm64
+      # build:
+      #   context: ./mysql
+      #   args:
+      #     - MYSQL_VERSION=${MYSQL_VERSION}
+
       environment:
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_USER=${MYSQL_USER}
